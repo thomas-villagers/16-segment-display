@@ -28,14 +28,13 @@ char getCharAt(int i)
 
 -(void) drawRect: (NSRect) bounds
 {
-    float spacing = 1.1;
     glClearColor(0,0,0,0);
     glClear(GL_COLOR_BUFFER_BIT);
 
     glPushMatrix();
     glScalef(0.25,1,1);
-    
     glTranslatef(-3.3,0,0);
+    float spacing = 1.1;
     int nChars=7;
     for (int i = 0; i < nChars; i++)
     {
