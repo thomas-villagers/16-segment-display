@@ -13,10 +13,8 @@
 #define __SEGMENTDISPLAY_H__
 #ifdef __APPLE__
 #include <OpenGL/gl.h>
-#include <GLUT/glut.h>
 #else
 #include <GL/gl.h>
-#include <GL/glut.h>
 #endif
 
 #include "segmentDisplay.h"
@@ -44,8 +42,7 @@ const int characterTable[] = { 0,      /*   */ 0x1000C, /* ! */ 0x404,  /* " */ 
 			       0x3C00, /* k */ 0xC00,   /* l */ 0xB48,  /* m */ 0x940,  /* n */ 0x960,   /* o */
 			       0x5C1,  /* p */ 0xD81,   /* q */ 0x140,  /* r */ 0x9A1,  /* s */ 0XF00,   /* t */
 			       0x860,  /* u */ 0x4040,  /* v */ 0x6048, /* w */ 0xF000, /* x */	0xB84,   /* y */
-			       0x4120, /* z */ 0xD12,   /* { */ 0xC0,   /* | */	0xE21,  /* } */ 0x9000,  /* ~ */
-};
+			       0x4120, /* z */ 0xD12,   /* { */ 0xC0,   /* | */	0xE21,  /* } */ 0x9000,  /* ~ */ };
 
 void drawPolygon(GLfloat vertices[], int n)
 {
@@ -63,12 +60,6 @@ void drawHorizontalSegment()
 			 -length,-thickness,
 			 -length-0.25,0,
 			 -length,thickness };
-  /*  GLfloat vertices[] = { 1,thickness, 
-			 1.25,0,
-			 1,-thickness,
-			 -1,-thickness,
-			 -1-0.25,0,
-			 -1,thickness };*/
   drawPolygon(vertices, 6);
 }
 
@@ -126,7 +117,6 @@ void drawInnerHorizontalSegment(float sx, float sy)
 void drawVerticalSegment(float sx, float sy)
 {
   glPushMatrix();
-  //
   glScalef(sx,sy,1);
   glTranslatef(2.7,2.3,0);
   glRotatef(90,0,0,1);
@@ -152,27 +142,27 @@ void setColor(int segment, char c)
 }
 
 typedef struct segment {
+  void (*drawSegment)(float, float);
   float sx;
   float sy;
-  void (*drawSegment)(float, float);
 } segment;
 
-segment segments[] = {{-1,1, drawOuterHorizontalSegment },
-		      {1,1,  drawOuterHorizontalSegment },
-		      {1,1, drawVerticalSegment },
-		      {1,-1, drawVerticalSegment },
-		      {1,-1, drawOuterHorizontalSegment },
-		      {-1,-1, drawOuterHorizontalSegment },
-		      {-1,-1, drawVerticalSegment },
-		      {-1,1, drawVerticalSegment },
-		      {1,1, drawInnerHorizontalSegment },
-		      {-1,1, drawInnerHorizontalSegment },
-		      {1,1, drawInnerVerticalSegment },
-		      {1,-1, drawInnerVerticalSegment },
-		      {1,1, drawSkewedSegment },
-		      {1,-1, drawSkewedSegment },
-		      {-1,-1, drawSkewedSegment },
-		      {-1,1, drawSkewedSegment }
+segment segments[] = {{drawOuterHorizontalSegment,-1,1 },
+		      {drawOuterHorizontalSegment,1,1 },
+		      {drawVerticalSegment,1,1 },
+		      {drawVerticalSegment,1,-1 },
+		      {drawOuterHorizontalSegment,1,-1 },
+		      {drawOuterHorizontalSegment,-1,-1 },
+		      {drawVerticalSegment,-1,-1 },
+		      {drawVerticalSegment,-1,1 },
+		      {drawInnerHorizontalSegment,1,1 },
+		      {drawInnerHorizontalSegment,-1,1 },
+		      {drawInnerVerticalSegment,1,1 },
+		      {drawInnerVerticalSegment,1,-1 },
+		      {drawSkewedSegment,1,1 },
+		      {drawSkewedSegment,1,-1 },
+		      {drawSkewedSegment,-1,-1 },
+		      {drawSkewedSegment,-1,1 }
 };
 
 void drawSegment(int segment, char c)
