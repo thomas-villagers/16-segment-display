@@ -128,8 +128,8 @@ void drawVerticalSegment(float sx, float sy)
 }
 
 typedef struct segment {
-  int sx;
-  int sy;
+  float sx;
+  float sy;
   void (*drawSegment)(float, float);
 } segment;
 
