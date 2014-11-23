@@ -9,8 +9,8 @@ Demo:
 
 Just type
 
-  make
-  ./main
+    make
+    ./main
 
 
 Applescript NSOpenGLView example: 
