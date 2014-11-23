@@ -8,14 +8,14 @@
 
 script AppDelegate
 	property parent : class "NSObject"
-    property oglView : missing value
+        property oglView : missing value
     
 	-- IBOutlets
 	property theWindow : missing value
 	
 	on applicationWillFinishLaunching_(aNotification)
 		-- Insert code here to initialize your application before any files are opened
-        oglView's setText_("1234567")
+                oglView's setText_("1234567")
 	end applicationWillFinishLaunching_
 	
 	on applicationShouldTerminate_(sender)
