@@ -54,34 +54,23 @@ void drawPolygon(GLfloat vertices[], int n)
   glDrawElements(GL_POLYGON, n, GL_UNSIGNED_INT, indices);
 }
 
-void drawHorizontalSegment(float length)
+void drawHorizontalSegment()
 {
-  length=0.5*length;
-  GLfloat vertices[] = { length,thickness, 
-			 length+0.25,0,
-			 length,-thickness,
-			 -length,-thickness,
-			 -length-0.25,0,
-			 -length,thickness };
+  GLfloat vertices[] = { 1,thickness, 
+			 1.25,0,
+			 1,-thickness,
+			 -1,-thickness,
+			 -1-0.25,0,
+			 -1,thickness };
   drawPolygon(vertices, 6);
-}
-
-void drawInnerHorizontalSegment(float sx, float sy)
-{
-  glPushMatrix();
-  glScalef(sx,sy,1);
-  glTranslatef(-1.25,0,0);
-  drawHorizontalSegment(2);
-  glPopMatrix();
 }
 
 void drawInnerVerticalSegment(float sx, float sy)
 {
-  const float length = 8*0.5;
   GLfloat vertices[] = { 0,0,
 			 thickness,0.25,
-			 thickness,length,
-			 -thickness,length,
+			 thickness,4,
+			 -thickness,4,
 			 -thickness,0.25 };
   glPushMatrix();
   glScalef(sx,sy,1);
@@ -92,11 +81,10 @@ void drawInnerVerticalSegment(float sx, float sy)
 
 void drawOuterHorizontalSegment(float sx, float sy)
 {
-  const float length=2.5;
   GLfloat vertices[] = { 0.075, -thickness,
-			 length, -thickness,
-			 length + 0.25, 0,
-			 length, thickness,
+			 2.5, -thickness,
+			 2.5 + 0.25, 0,
+			 2.5, thickness,
 			 0.075, thickness };
   glPushMatrix();
   glScalef(sx,sy,1);
@@ -119,95 +107,49 @@ void drawSkewedSegment(float sx, float sy)
   glPopMatrix();
 }
 
+void drawInnerHorizontalSegment(float sx, float sy)
+{
+  glPushMatrix();
+  glScalef(sx,sy,1);
+  glTranslatef(-1.25,0,0);
+  drawHorizontalSegment();
+  glPopMatrix();
+}
+
 void drawVerticalSegment(float sx, float sy)
 {
   glPushMatrix();
   glScalef(sx,sy,1);
   glTranslatef(2.7,2.3,0);
   glRotatef(90,0,0,1);
-  drawHorizontalSegment(4);
+  glScalef(2,1,1);
+  drawHorizontalSegment();
   glPopMatrix();
 }
 
-void drawSegment1()
-{
-  drawOuterHorizontalSegment(1,1);
-}
+typedef struct segment {
+  float sx;
+  float sy;
+  void (*drawSegment)(float, float);
+} segment;
 
-void drawSegment0()
-{
-  drawOuterHorizontalSegment(-1,1);
-}
-
-void drawSegment2()
-{
-  drawVerticalSegment(1,1);
-}
-
-void drawSegment3()
-{
-  drawVerticalSegment(1,-1);
-}
-
-void drawSegment4()
-{
-  drawOuterHorizontalSegment(1,-1);
-}
-
-void drawSegment5()
-{
-  drawOuterHorizontalSegment(-1,-1);
-}
-
-void drawSegment6()
-{
-  drawVerticalSegment(-1,-1);
-}
-
-void drawSegment7()
-{
-  drawVerticalSegment(-1,1);
-}
-
-void drawSegment8()
-{
-  drawInnerHorizontalSegment(1,1);
-}
-
-void drawSegment9()
-{
-  drawInnerHorizontalSegment(-1,1);
-}
-
-void drawSegmentA()
-{
-  drawInnerVerticalSegment(1,1);
-}
-
-void drawSegmentB()
-{
-  drawInnerVerticalSegment(1,-1);
-}
-
-void drawSegmentC()
-{
-  drawSkewedSegment(1,1);
-}
-
-void drawSegmentD()
-{
-  drawSkewedSegment(1,-1);
-}
-
-void drawSegmentE()
-{
-  drawSkewedSegment(-1,-1);
-}
-
-void drawSegmentF()
-{
-  drawSkewedSegment(-1,1);
-}
+segment segments[] = {{-1,1, drawOuterHorizontalSegment },
+		      {1,1,  drawOuterHorizontalSegment },
+		      {1,1, drawVerticalSegment },
+		      {1,-1, drawVerticalSegment },
+		      {1,-1, drawOuterHorizontalSegment },
+		      {-1,-1, drawOuterHorizontalSegment },
+		      {-1,-1, drawVerticalSegment },
+		      {-1,1, drawVerticalSegment },
+		      {1,1, drawInnerHorizontalSegment },
+		      {-1,1, drawInnerHorizontalSegment },
+		      {1,1, drawInnerVerticalSegment },
+		      {1,-1, drawInnerVerticalSegment },
+		      {1,1, drawSkewedSegment },
+		      {1,-1, drawSkewedSegment },
+		      {-1,-1, drawSkewedSegment },
+		      {-1,1, drawSkewedSegment }
+};
 
 void drawDot()
 {
@@ -225,16 +167,10 @@ void setColor(int segment, char c)
     glColor3fv(background);
 }
 
-void (*drawSegment_[])() = { drawSegment0, drawSegment1, drawSegment2, drawSegment3,
-			     drawSegment4, drawSegment5, drawSegment6, drawSegment7,
-			     drawSegment8, drawSegment9, drawSegmentA, drawSegmentB,
-			     drawSegmentC, drawSegmentD, drawSegmentE, drawSegmentF
-};
-
 void drawSegment(int segment, char c)
 {
   setColor(segment, c);
-  drawSegment_[segment]();
+  segments[segment].drawSegment(segments[segment].sx, segments[segment].sy);
 }
 
 void drawCharacter(char c)

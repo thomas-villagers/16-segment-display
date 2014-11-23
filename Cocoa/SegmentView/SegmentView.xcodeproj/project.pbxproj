@@ -13,7 +13,7 @@
 		E97EAB061A2217C20008748F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E97EAB051A2217C20008748F /* Images.xcassets */; };
 		E97EAB091A2217C20008748F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = E97EAB071A2217C20008748F /* MainMenu.xib */; };
 		E97EAB111A2218DC0008748F /* SegmentsOpenGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = E97EAB101A2218DC0008748F /* SegmentsOpenGLView.m */; };
-		E97EAB131A2219130008748F /* segmentDisplay.c in Sources */ = {isa = PBXBuildFile; fileRef = E97EAB121A2219130008748F /* segmentDisplay.c */; };
+		E97EAB161A2245260008748F /* segmentDisplay.c in Sources */ = {isa = PBXBuildFile; fileRef = E97EAB151A2245260008748F /* segmentDisplay.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,8 +26,8 @@
 		E97EAB081A2217C20008748F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		E97EAB0F1A2218DC0008748F /* SegmentsOpenGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SegmentsOpenGLView.h; sourceTree = "<group>"; };
 		E97EAB101A2218DC0008748F /* SegmentsOpenGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SegmentsOpenGLView.m; sourceTree = "<group>"; };
-		E97EAB121A2219130008748F /* segmentDisplay.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = segmentDisplay.c; sourceTree = "<group>"; };
 		E97EAB141A22195F0008748F /* segmentDisplay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = segmentDisplay.h; sourceTree = "<group>"; };
+		E97EAB151A2245260008748F /* segmentDisplay.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = segmentDisplay.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,7 +74,7 @@
 				E97EAB0F1A2218DC0008748F /* SegmentsOpenGLView.h */,
 				E97EAB101A2218DC0008748F /* SegmentsOpenGLView.m */,
 				E97EAB141A22195F0008748F /* segmentDisplay.h */,
-				E97EAB121A2219130008748F /* segmentDisplay.c */,
+				E97EAB151A2245260008748F /* segmentDisplay.c */,
 				E97EAB051A2217C20008748F /* Images.xcassets */,
 				E97EAB071A2217C20008748F /* MainMenu.xib */,
 				E97EAAFF1A2217C20008748F /* Supporting Files */,
@@ -162,7 +162,7 @@
 			files = (
 				E97EAB111A2218DC0008748F /* SegmentsOpenGLView.m in Sources */,
 				E97EAB041A2217C20008748F /* AppDelegate.applescript in Sources */,
-				E97EAB131A2219130008748F /* segmentDisplay.c in Sources */,
+				E97EAB161A2245260008748F /* segmentDisplay.c in Sources */,
 				E97EAB021A2217C20008748F /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
