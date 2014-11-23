@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>83F7FEBB-39E7-462A-823B-0D45A259454F</string>
+	<key>IDESourceControlProjectName</key>
+	<string>SegmentView</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>B7C2C0D5767D9FCF0847E836D3A326412D4ADF3A</key>
+		<string>https://github.com/thomas-villagers/16-segment-display.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Cocoa/SegmentView/SegmentView.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>B7C2C0D5767D9FCF0847E836D3A326412D4ADF3A</key>
+		<string>../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/thomas-villagers/16-segment-display.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>B7C2C0D5767D9FCF0847E836D3A326412D4ADF3A</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>B7C2C0D5767D9FCF0847E836D3A326412D4ADF3A</string>
+			<key>IDESourceControlWCCName</key>
+			<string>16-segment-display</string>
+		</dict>
+	</array>
+</dict>
+</plist>
