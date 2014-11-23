@@ -56,12 +56,19 @@ void drawPolygon(GLfloat vertices[], int n)
 
 void drawHorizontalSegment()
 {
-  GLfloat vertices[] = { 1,thickness, 
+  float length=1;
+  GLfloat vertices[] = { length,thickness, 
+			 length+0.25,0,
+			 length,-thickness,
+			 -length,-thickness,
+			 -length-0.25,0,
+			 -length,thickness };
+  /*  GLfloat vertices[] = { 1,thickness, 
 			 1.25,0,
 			 1,-thickness,
 			 -1,-thickness,
 			 -1-0.25,0,
-			 -1,thickness };
+			 -1,thickness };*/
   drawPolygon(vertices, 6);
 }
 
@@ -119,12 +126,29 @@ void drawInnerHorizontalSegment(float sx, float sy)
 void drawVerticalSegment(float sx, float sy)
 {
   glPushMatrix();
+  //
   glScalef(sx,sy,1);
   glTranslatef(2.7,2.3,0);
   glRotatef(90,0,0,1);
-  glScalef(2,1,1);
+  glScalef(1.8,1,1);
   drawHorizontalSegment();
   glPopMatrix();
+}
+
+void drawDot()
+{
+  glBegin(GL_POINTS);
+  glVertex2f(0.6,-0.8);
+  glEnd();
+}
+
+void setColor(int segment, char c)
+{
+  int index = (int)c - ' ';
+  if ((1 << segment) & characterTable[index])
+    glColor3fv(foreground);
+  else
+    glColor3fv(background);
 }
 
 typedef struct segment {
@@ -150,22 +174,6 @@ segment segments[] = {{-1,1, drawOuterHorizontalSegment },
 		      {-1,-1, drawSkewedSegment },
 		      {-1,1, drawSkewedSegment }
 };
-
-void drawDot()
-{
-  glBegin(GL_POINTS);
-  glVertex2f(0.6,-0.8);
-  glEnd();
-}
-
-void setColor(int segment, char c)
-{
-  int index = (int)c - 32;
-  if ((1 << segment) & characterTable[index])
-    glColor3fv(foreground);
-  else
-    glColor3fv(background);
-}
 
 void drawSegment(int segment, char c)
 {
