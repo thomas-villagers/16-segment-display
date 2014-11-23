@@ -1,7 +1,7 @@
 16-segment-display
 ==================
 
-This is still work in progress ... 
+This is still work in progress ... so please don't expect super clean code or completeness. 
 
 Demo: 
 
