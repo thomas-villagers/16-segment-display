@@ -21,7 +21,7 @@ NSString *myString = @"Test";
     [ self setNeedsDisplay: YES ] ;
 }
 
-char getNextChar(int i)
+char getCharAt(int i)
 {
     return (i < [myString length]) ? [myString characterAtIndex:i] :' ';
 }
@@ -39,7 +39,7 @@ char getNextChar(int i)
     int nChars=7;
     for (int i = 0; i < nChars; i++)
     {
-        drawCharacter(getNextChar(i));
+        drawCharacter(getCharAt(i));
         glTranslatef(spacing,0,0);
     }
     glPopMatrix();
