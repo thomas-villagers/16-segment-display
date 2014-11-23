@@ -7,7 +7,8 @@ Demo:
 
 ![](https://github.com/thomas-villagers/16-segment-display/blob/master/img/test.png)
 
-Just type 
+Just type
+
   make
   ./main
 
