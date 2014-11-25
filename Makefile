@@ -13,19 +13,7 @@ endif
 
 CC=gcc
 
-
-#$(BINDIR)/$(P): test/%.c 
-#		$(CC) $(CFLAGS) -c -o $@ $< 
-
-#$(BINDIR)/%.o : src/%.c
-#	        $(CC) $(CFLAGS) -c -o $@ $<
-
-#$(OBJECTS): $(BINDIR)/%.o : src/%.c
-#   	 $(CC) $(CFLAGS) -c $< $(LIB_PATH) $(LIBS)
-
 $(P):  $(OBJECTS) 
-
-
 
 .PHONY: clean
 clean:
