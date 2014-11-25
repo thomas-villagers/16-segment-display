@@ -51,7 +51,7 @@ void drawPolygon(GLfloat vertices[], int n)
   glDrawElements(GL_POLYGON, n, GL_UNSIGNED_INT, indices);
 }
 
-void drawHorizontalSegment()
+void drawVerticalSegment()
 {
   float length=1;
   GLfloat vertices[] = { length,thickness, 
@@ -61,20 +61,6 @@ void drawHorizontalSegment()
 			 -length-0.25,0,
 			 -length,thickness };
   drawPolygon(vertices, 6);
-}
-
-void drawInnerVerticalSegment(float sx, float sy)
-{
-  GLfloat vertices[] = { 0,0,
-			 thickness,0.25,
-			 thickness,4,
-			 -thickness,4,
-			 -thickness,0.25 };
-  glPushMatrix();
-  glScalef(sx,sy,1);
-  glTranslatef(0,0.25,0);
-  drawPolygon(vertices, 5);
-  glPopMatrix();
 }
 
 void drawOuterHorizontalSegment(float sx, float sy)
@@ -91,6 +77,40 @@ void drawOuterHorizontalSegment(float sx, float sy)
   glPopMatrix();
 }
 
+void drawOuterVerticalSegment(float sx, float sy)
+{
+  glPushMatrix();
+  glScalef(sx,sy,1);
+  glTranslatef(2.7,2.3,0);
+  glRotatef(90,0,0,1);
+  glScalef(1.8,1,1);
+  drawVerticalSegment();
+  glPopMatrix();
+}
+
+void drawInnerHorizontalSegment(float sx, float sy)
+{
+  glPushMatrix();
+  glScalef(sx,sy,1);
+  glTranslatef(-1.25,0,0);
+  drawVerticalSegment();
+  glPopMatrix();
+}
+
+void drawInnerVerticalSegment(float sx, float sy)
+{
+  GLfloat vertices[] = { 0,0,
+			 thickness,0.25,
+			 thickness,4,
+			 -thickness,4,
+			 -thickness,0.25 };
+  glPushMatrix();
+  glScalef(sx,sy,1);
+  glTranslatef(0,0.25,0);
+  drawPolygon(vertices, 5);
+  glPopMatrix();
+}
+
 void drawSkewedSegment(float sx, float sy)
 {
   GLfloat vertices[] = { 0.5, 1,
@@ -102,26 +122,6 @@ void drawSkewedSegment(float sx, float sy)
   glPushMatrix();
   glScalef(sx,sy,1);
   drawPolygon(vertices, 6);
-  glPopMatrix();
-}
-
-void drawInnerHorizontalSegment(float sx, float sy)
-{
-  glPushMatrix();
-  glScalef(sx,sy,1);
-  glTranslatef(-1.25,0,0);
-  drawHorizontalSegment();
-  glPopMatrix();
-}
-
-void drawVerticalSegment(float sx, float sy)
-{
-  glPushMatrix();
-  glScalef(sx,sy,1);
-  glTranslatef(2.7,2.3,0);
-  glRotatef(90,0,0,1);
-  glScalef(1.8,1,1);
-  drawHorizontalSegment();
   glPopMatrix();
 }
 
@@ -149,12 +149,12 @@ typedef struct segment {
 
 segment segments[] = {{drawOuterHorizontalSegment,-1,1 },
 		      {drawOuterHorizontalSegment,1,1 },
-		      {drawVerticalSegment,1,1 },
-		      {drawVerticalSegment,1,-1 },
+		      {drawOuterVerticalSegment,1,1 },
+		      {drawOuterVerticalSegment,1,-1 },
 		      {drawOuterHorizontalSegment,1,-1 },
 		      {drawOuterHorizontalSegment,-1,-1 },
-		      {drawVerticalSegment,-1,-1 },
-		      {drawVerticalSegment,-1,1 },
+		      {drawOuterVerticalSegment,-1,-1 },
+		      {drawOuterVerticalSegment,-1,1 },
 		      {drawInnerHorizontalSegment,1,1 },
 		      {drawInnerHorizontalSegment,-1,1 },
 		      {drawInnerVerticalSegment,1,1 },
@@ -165,10 +165,10 @@ segment segments[] = {{drawOuterHorizontalSegment,-1,1 },
 		      {drawSkewedSegment,-1,1 }
 };
 
-void drawSegment(int segment, char c)
+void drawSegment(int index, char c)
 {
-  setColor(segment, c);
-  segments[segment].drawSegment(segments[segment].sx, segments[segment].sy);
+  setColor(index, c);
+  segments[index].drawSegment(segments[index].sx, segments[index].sy);
 }
 
 void drawCharacter(char c)
