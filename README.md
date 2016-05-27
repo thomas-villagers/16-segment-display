@@ -1,8 +1,6 @@
 16-segment-display
 ==================
 
-This is still work in progress ... so please don't expect super clean code or completeness. 
-
 Demo: 
 
 ![](https://github.com/thomas-villagers/16-segment-display/blob/master/img/test.png)
